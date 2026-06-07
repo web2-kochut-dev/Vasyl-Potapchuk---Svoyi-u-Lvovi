@@ -1,0 +1,103 @@
+<p-dialog
+  [visible]="visible()"
+  (visibleChange)="visible.set($event)"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [style]="{ width: '32rem', maxWidth: '94vw' }"
+  [header]="copy.title"
+>
+  <p class="dialog-subtitle">{{ copy.subtitle }}</p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="lead-form" novalidate>
+    <div class="field">
+      <label for="lead-name">{{ copy.nameLabel }}</label>
+      <input
+        pInputText
+        id="lead-name"
+        formControlName="name"
+        [placeholder]="copy.namePlaceholder"
+        [class.ng-dirty]="invalid('name')"
+        autocomplete="name"
+      />
+      @if (invalid('name')) {
+        <small class="field-error">{{ copy.nameError }}</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="lead-phone">{{ copy.phoneLabel }}</label>
+      <input
+        pInputText
+        id="lead-phone"
+        type="tel"
+        formControlName="phone"
+        [placeholder]="copy.phonePlaceholder"
+        [class.ng-dirty]="invalid('phone')"
+        autocomplete="tel"
+      />
+      @if (invalid('phone')) {
+        <small class="field-error">{{ copy.phoneError }}</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="lead-service">{{ copy.serviceLabel }}</label>
+      <p-select
+        inputId="lead-service"
+        formControlName="service"
+        [options]="serviceOptions"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="copy.servicePlaceholder"
+        appendTo="body"
+        styleClass="w-full"
+      />
+      @if (invalid('service')) {
+        <small class="field-error">{{ copy.serviceError }}</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="lead-details">{{ copy.detailsLabel }}</label>
+      <textarea
+        pTextarea
+        id="lead-details"
+        formControlName="details"
+        [placeholder]="copy.detailsPlaceholder"
+        rows="3"
+      ></textarea>
+    </div>
+
+    <div class="field">
+      <label for="lead-call-time">{{ copy.callTimeLabel }}</label>
+      <p-select
+        inputId="lead-call-time"
+        formControlName="callTime"
+        [options]="callTimes"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="copy.callTimePlaceholder"
+        appendTo="body"
+        styleClass="w-full"
+        [showClear]="true"
+      />
+    </div>
+
+    <div class="dialog-actions">
+      <p-button
+        type="button"
+        [label]="copy.cancel"
+        severity="secondary"
+        [text]="true"
+        (onClick)="close()"
+      />
+      <p-button
+        type="submit"
+        [label]="submitting() ? copy.submitting : copy.submit"
+        icon="pi pi-send"
+        [loading]="submitting()"
+      />
+    </div>
+  </form>
+</p-dialog>

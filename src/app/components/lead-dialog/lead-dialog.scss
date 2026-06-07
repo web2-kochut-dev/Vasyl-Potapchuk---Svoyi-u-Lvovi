@@ -1,0 +1,43 @@
+.dialog-subtitle {
+  margin: 0 0 1.25rem;
+  color: var(--p-text-muted-color, #64748b);
+  line-height: 1.5;
+}
+
+.lead-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  label {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+  }
+}
+
+.field-error {
+  color: var(--p-red-500, #ef4444);
+  font-size: 0.85rem;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+:host ::ng-deep .w-full {
+  width: 100%;
+}

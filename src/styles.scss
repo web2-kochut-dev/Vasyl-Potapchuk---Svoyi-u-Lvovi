@@ -1,0 +1,15 @@
+/* Global styles */
+@import 'primeicons/primeicons.css';
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--p-surface-0, #fff);
+}
