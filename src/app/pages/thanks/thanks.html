@@ -1,0 +1,18 @@
+<section class="thanks">
+  <div class="container">
+    <p-card styleClass="thanks-card">
+      <div class="thanks-inner">
+        <i class="pi pi-check-circle thanks-icon" aria-hidden="true"></i>
+        <h1>{{ title() }}</h1>
+        <p class="thanks-text">{{ copy.text }}</p>
+        <p class="thanks-urgent">
+          {{ copy.urgentHint }}
+          <a [href]="contacts.phoneHref" class="thanks-phone">{{ contacts.phone }}</a>
+        </p>
+        <a routerLink="/" class="thanks-back">
+          <p-button [label]="copy.backHome" icon="pi pi-home" [outlined]="true" />
+        </a>
+      </div>
+    </p-card>
+  </div>
+</section>

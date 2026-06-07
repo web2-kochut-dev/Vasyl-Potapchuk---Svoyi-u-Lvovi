@@ -1,0 +1,127 @@
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <p-tag [value]="hero.eyebrow" severity="warn" />
+    <h1>{{ hero.title }}</h1>
+    <p class="hero-subtitle">{{ hero.subtitle }}</p>
+    <div class="hero-actions">
+      <p-button
+        [label]="hero.ctaPrimary"
+        icon="pi pi-phone"
+        size="large"
+        (onClick)="openLeadDialog()"
+      />
+      <p-button
+        [label]="hero.ctaSecondary"
+        icon="pi pi-arrow-down"
+        size="large"
+        severity="secondary"
+        [outlined]="true"
+        (onClick)="scrollTo('services')"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="section">
+  <div class="container">
+    <h2>{{ servicesSection.title }}</h2>
+    <p class="section-subtitle">{{ servicesSection.subtitle }}</p>
+    <div class="services-grid">
+      @for (service of services; track service.title) {
+        <p-card styleClass="service-card">
+          <ng-template #header>
+            <div class="service-header">
+              <i [class]="service.icon" aria-hidden="true"></i>
+              <h3>{{ service.title }}</h3>
+            </div>
+          </ng-template>
+          <p class="service-description">{{ service.description }}</p>
+          <ul class="service-examples">
+            @for (example of service.examples; track example) {
+              <li>{{ example }}</li>
+            }
+          </ul>
+        </p-card>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Promo -->
+<section class="section promo">
+  <div class="container promo-inner">
+    <p-tag [value]="promo.badge" severity="success" />
+    <h2>{{ promo.title }}</h2>
+    <p class="section-subtitle">{{ promo.text }}</p>
+    <p-button
+      [label]="promo.cta"
+      icon="pi pi-percentage"
+      severity="success"
+      (onClick)="openLeadDialog()"
+    />
+  </div>
+</section>
+
+<!-- Reviews -->
+<section id="reviews" class="section">
+  <div class="container">
+    <h2>{{ reviewsSection.title }}</h2>
+    <p class="section-subtitle">{{ reviewsSection.subtitle }}</p>
+    <div class="reviews-grid">
+      @for (review of reviews; track review.author) {
+        <p-card styleClass="review-card">
+          <div class="review-top">
+            <div>
+              <strong>{{ review.author }}</strong>
+              <span class="review-meta">{{ review.district }} · {{ review.service }}</span>
+            </div>
+            <p-rating [ngModel]="review.rating" [readonly]="true" />
+          </div>
+          <p class="review-text">{{ review.text }}</p>
+        </p-card>
+      }
+    </div>
+    <div class="reviews-cta">
+      <p class="reviews-hint">{{ reviewsSection.emptyHint }}</p>
+      <p-button [label]="reviewsSection.cta" icon="pi pi-pencil" [outlined]="true" />
+    </div>
+  </div>
+</section>
+
+<!-- Contacts -->
+<section id="contacts" class="section contacts">
+  <div class="container">
+    <h2>{{ contacts.title }}</h2>
+    <p class="section-subtitle">{{ contacts.subtitle }}</p>
+    <p-card styleClass="contact-card">
+      <div class="contact-inner">
+        <div class="contact-person">
+          <i class="pi pi-user contact-avatar" aria-hidden="true"></i>
+          <div>
+            <strong>{{ contacts.contactName }}</strong>
+            <span class="review-meta">{{ contacts.contactRole }}</span>
+          </div>
+        </div>
+        <p-divider />
+        <a class="contact-phone" [href]="contacts.phoneHref">{{ contacts.phone }}</a>
+        <p class="contact-hours">
+          <i class="pi pi-clock" aria-hidden="true"></i>
+          {{ contacts.hours }}
+        </p>
+        <a [href]="contacts.phoneHref" class="contact-call-link">
+          <p-button [label]="contacts.cta" icon="pi pi-phone" size="large" styleClass="w-full" />
+        </a>
+        <p-button
+          label="Або залишіть заявку — передзвонимо самі"
+          icon="pi pi-envelope"
+          [text]="true"
+          (onClick)="openLeadDialog()"
+        />
+      </div>
+    </p-card>
+  </div>
+</section>
+
+<app-lead-dialog [(visible)]="leadDialogVisible" />
