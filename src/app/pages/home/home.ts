@@ -74,6 +74,13 @@ export class Home {
     { breakpoint: '560px', numVisible: 1, numScroll: 1 },
   ];
 
+  /** Кількість видимих відгуків по брейкпойнтах (карусель-свайпер). */
+  protected readonly reviewsResponsive = [
+    { breakpoint: '1200px', numVisible: 3, numScroll: 1 },
+    { breakpoint: '768px', numVisible: 2, numScroll: 1 },
+    { breakpoint: '560px', numVisible: 1, numScroll: 1 },
+  ];
+
   protected readonly leadDialogVisible = signal(false);
   protected readonly reviewDialogVisible = signal(false);
 

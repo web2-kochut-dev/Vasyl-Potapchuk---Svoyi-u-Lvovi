@@ -301,7 +301,8 @@
   img {
     display: block;
     width: 100%;
-    aspect-ratio: 3 / 4;
+    height: auto;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
     transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
@@ -365,12 +366,38 @@
   }
 }
 
-/* ===================== Reviews ===================== */
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.25rem;
+/* ===================== Reviews (карусель-свайпер) ===================== */
+.reviews-carousel {
   margin-bottom: 2rem;
+
+  :host ::ng-deep & {
+    .p-carousel-item {
+      padding: 0.6rem;
+      display: flex;
+    }
+    .p-carousel-prev-button,
+    .p-carousel-next-button {
+      color: var(--brand-navy);
+    }
+    .p-carousel-indicator-button {
+      background: var(--brand-border);
+    }
+    .p-carousel-indicator.p-carousel-indicator-active .p-carousel-indicator-button {
+      background: var(--brand-navy);
+    }
+  }
+}
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--brand-surface);
+  border: 1px solid var(--brand-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .review-top {

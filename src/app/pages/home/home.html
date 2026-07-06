@@ -102,8 +102,8 @@
               <img
                 [src]="'img/services/' + service.image"
                 [alt]="service.title"
-                width="768"
-                height="1024"
+                width="1184"
+                height="864"
                 loading="lazy"
               />
               <span class="service-icon">
@@ -146,19 +146,29 @@
   <div class="container">
     <h2 reveal>{{ reviewsSection.title }}</h2>
     <p class="section-subtitle" reveal [revealDelay]="80">{{ reviewsSection.subtitle }}</p>
-    <div class="reviews-grid">
-      @for (review of reviews(); track $index; let i = $index) {
-        <p-card styleClass="review-card" reveal [revealDelay]="(i % 3) * 80">
-          <div class="review-top">
-            <div>
-              <strong>{{ review.author }}</strong>
-              <span class="review-meta">{{ review.district }} · {{ review.service }}</span>
+    <div class="reviews-carousel" reveal [revealDelay]="120">
+      <p-carousel
+        [value]="reviews()"
+        [numVisible]="3"
+        [numScroll]="1"
+        [responsiveOptions]="reviewsResponsive"
+        [circular]="true"
+        [showIndicators]="true"
+        [showNavigators]="true"
+      >
+        <ng-template let-review pTemplate="item">
+          <article class="review-card">
+            <div class="review-top">
+              <div>
+                <strong>{{ review.author }}</strong>
+                <span class="review-meta">{{ review.district }} · {{ review.service }}</span>
+              </div>
+              <p-rating [ngModel]="review.rating" [readonly]="true" />
             </div>
-            <p-rating [ngModel]="review.rating" [readonly]="true" />
-          </div>
-          <p class="review-text">{{ review.text }}</p>
-        </p-card>
-      }
+            <p class="review-text">{{ review.text }}</p>
+          </article>
+        </ng-template>
+      </p-carousel>
     </div>
     <div class="reviews-cta" reveal>
       <p class="reviews-hint">{{ reviewsSection.emptyHint }}</p>
