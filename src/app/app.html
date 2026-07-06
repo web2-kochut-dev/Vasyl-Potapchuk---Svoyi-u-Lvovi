@@ -3,9 +3,14 @@
     <a routerLink="/" class="brand" aria-label="Свої у Львові — на головну">
       <app-logo [emblemSize]="38" />
     </a>
+    <nav class="header-nav" aria-label="Основна навігація">
+      <a href="#services">Послуги</a>
+      <a href="#why">Чому ми</a>
+      <a href="#reviews">Відгуки</a>
+    </nav>
     <a class="header-phone" [href]="contacts.phoneHref">
       <i class="pi pi-phone" aria-hidden="true"></i>
-      {{ contacts.phone }}
+      <span>{{ contacts.phone }}</span>
     </a>
   </div>
 </header>
@@ -15,8 +20,21 @@
 </main>
 
 <footer class="site-footer">
-  <div class="container">
-    <strong>{{ footer.brand }}</strong> — {{ footer.tagline }}
-    <p>{{ footer.note }}</p>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <app-logo [emblemSize]="40" />
+      <p>{{ footer.tagline }}</p>
+    </div>
+    <nav class="footer-nav" aria-label="Навігація у футері">
+      <a href="#services">Послуги</a>
+      <a href="#why">Чому ми</a>
+      <a href="#reviews">Відгуки</a>
+      <a href="#contacts">Контакти</a>
+    </nav>
+    <div class="footer-contact">
+      <a class="footer-phone" [href]="contacts.phoneHref">{{ contacts.phone }}</a>
+      <span>{{ contacts.hours }}</span>
+    </div>
   </div>
+  <div class="container footer-note">{{ footer.note }}</div>
 </footer>

@@ -39,6 +39,53 @@ export const HERO_STATS = [
   { value: '8–20', unit: 'щодня', label: 'на звʼязку без вихідних' },
 ] as const;
 
+/** Короткі маркери довіри під героєм. */
+export const HERO_BADGES = [
+  'Гарантія на роботи',
+  'Оплата після виконання',
+  'Виїзд у день звернення',
+] as const;
+
+/** Соціальний доказ (рейтинг). */
+export const HERO_PROOF = {
+  rating: '4.9',
+  text: 'середня оцінка від львівʼян',
+} as const;
+
+export const WHY_SECTION = {
+  title: 'Чому нам довіряють',
+  subtitle: 'Ми не перший рік у справі й відповідаємо за результат.',
+} as const;
+
+export interface WhyItem {
+  iconKey: string;
+  title: string;
+  text: string;
+}
+
+export const WHY_ITEMS: WhyItem[] = [
+  {
+    iconKey: 'shield',
+    title: '7 років досвіду',
+    text: 'Знаємо специфіку львівських квартир — від австрійської проводки до вузьких сходів.',
+  },
+  {
+    iconKey: 'wallet',
+    title: 'Чесна ціна наперед',
+    text: 'Озвучуємо вартість до початку робіт. Без несподіванок у кінці.',
+  },
+  {
+    iconKey: 'clock',
+    title: 'Виїзд у зручний час',
+    text: 'Приїжджаємо тоді, коли зручно вам — часто вже в день звернення.',
+  },
+  {
+    iconKey: 'badge',
+    title: 'Гарантія на роботи',
+    text: 'Даємо гарантію та лишаємось на звʼязку, якщо потрібно щось підправити.',
+  },
+];
+
 export const SERVICES_SECTION = {
   title: 'Чим допоможемо',
   subtitle:

@@ -82,6 +82,22 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
           <path d="M6 10v9h12v-9" />
           <path d="M10 19v-5h4v5" />
         }
+        @case ('shield') {
+          <path d="M12 3 5 6v5c0 4.2 2.8 7.6 7 9 4.2-1.4 7-4.8 7-9V6z" />
+          <path d="m9 12 2 2 4-4" />
+        }
+        @case ('wallet') {
+          <path d="M4 7h13a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h11" />
+          <path d="M16 12.5h4v3h-4a1.5 1.5 0 0 1 0-3z" />
+        }
+        @case ('clock') {
+          <circle cx="12" cy="12" r="8.5" />
+          <path d="M12 7.5V12l3 2" />
+        }
+        @case ('badge') {
+          <path d="M12 3.5 14 6l3-.4-.4 3L19 11l-2.4 2.4.4 3-3-.4L12 18.5 10 16l-3 .4.4-3L5 11l2.4-2.6L7 5.6l3 .4z" />
+          <path d="m9.5 11 1.8 1.8L15 9" />
+        }
       }
     </svg>
   `,

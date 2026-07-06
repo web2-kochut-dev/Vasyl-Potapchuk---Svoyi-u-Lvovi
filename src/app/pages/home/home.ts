@@ -8,15 +8,20 @@ import { FormsModule } from '@angular/forms';
 import { LeadDialog } from '../../components/lead-dialog/lead-dialog';
 import { ReviewDialog } from '../../components/review-dialog/review-dialog';
 import { BrandIcon } from '../../components/brand-icon/brand-icon';
+import { Reveal } from '../../directives/reveal';
 import { ReviewsStore } from '../../services/reviews';
 import {
   CONTACTS,
   HERO,
+  HERO_BADGES,
+  HERO_PROOF,
   HERO_STATS,
   PROMO,
   REVIEWS_SECTION,
   SERVICES,
   SERVICES_SECTION,
+  WHY_ITEMS,
+  WHY_SECTION,
 } from '../../data/site-content';
 
 @Component({
@@ -31,6 +36,7 @@ import {
     LeadDialog,
     ReviewDialog,
     BrandIcon,
+    Reveal,
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
@@ -40,8 +46,12 @@ export class Home {
 
   protected readonly hero = HERO;
   protected readonly heroStats = HERO_STATS;
+  protected readonly heroBadges = HERO_BADGES;
+  protected readonly heroProof = HERO_PROOF;
   protected readonly servicesSection = SERVICES_SECTION;
   protected readonly services = SERVICES;
+  protected readonly whySection = WHY_SECTION;
+  protected readonly whyItems = WHY_ITEMS;
   protected readonly promo = PROMO;
   protected readonly reviewsSection = REVIEWS_SECTION;
   protected readonly reviews = this.reviewsStore.reviews;

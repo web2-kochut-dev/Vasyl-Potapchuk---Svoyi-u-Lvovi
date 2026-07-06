@@ -1,15 +1,17 @@
 <!-- Hero -->
 <section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div class="hero-copy">
-      <p-tag [value]="hero.eyebrow" severity="warn" />
-      <h1>{{ hero.title }}</h1>
-      <p class="hero-subtitle">{{ hero.subtitle }}</p>
-      <div class="hero-actions">
+      <p-tag [value]="hero.eyebrow" severity="warn" reveal />
+      <h1 reveal [revealDelay]="60">{{ hero.title }}</h1>
+      <p class="hero-subtitle" reveal [revealDelay]="120">{{ hero.subtitle }}</p>
+      <div class="hero-actions" reveal [revealDelay]="180">
         <p-button
           [label]="hero.ctaPrimary"
           icon="pi pi-phone"
           size="large"
+          styleClass="cta-accent"
           (onClick)="openLeadDialog()"
         />
         <p-button
@@ -21,7 +23,12 @@
           (onClick)="scrollTo('services')"
         />
       </div>
-      <ul class="hero-stats">
+      <ul class="hero-badges" reveal [revealDelay]="240">
+        @for (badge of heroBadges; track badge) {
+          <li><i class="pi pi-check-circle" aria-hidden="true"></i> {{ badge }}</li>
+        }
+      </ul>
+      <ul class="hero-stats" reveal [revealDelay]="300">
         @for (stat of heroStats; track stat.label) {
           <li>
             <span class="hero-stat-value">{{ stat.value }}</span>
@@ -31,7 +38,7 @@
         }
       </ul>
     </div>
-    <div class="hero-media">
+    <div class="hero-media" reveal [revealDelay]="160">
       <img
         src="img/hero.webp"
         alt="Майстер допоміжної служби у Львові"
@@ -39,18 +46,49 @@
         height="768"
         fetchpriority="high"
       />
+      <div class="hero-proof">
+        <div class="hero-proof-rating">
+          <p-rating [ngModel]="5" [readonly]="true" />
+          <strong>{{ heroProof.rating }}</strong>
+        </div>
+        <span>{{ heroProof.text }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why us / Trust -->
+<section id="why" class="section why">
+  <div class="container">
+    <h2 reveal>{{ whySection.title }}</h2>
+    <p class="section-subtitle" reveal [revealDelay]="80">{{ whySection.subtitle }}</p>
+    <div class="why-grid">
+      @for (item of whyItems; track item.title; let i = $index) {
+        <div class="why-card" reveal [revealDelay]="i * 90">
+          <span class="why-icon">
+            <app-brand-icon [name]="item.iconKey" [size]="24" />
+          </span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </div>
+      }
     </div>
   </div>
 </section>
 
 <!-- Services -->
-<section id="services" class="section">
+<section id="services" class="section services-section">
   <div class="container">
-    <h2>{{ servicesSection.title }}</h2>
-    <p class="section-subtitle">{{ servicesSection.subtitle }}</p>
+    <h2 reveal>{{ servicesSection.title }}</h2>
+    <p class="section-subtitle" reveal [revealDelay]="80">{{ servicesSection.subtitle }}</p>
     <div class="services-grid">
-      @for (service of services; track service.title) {
-        <p-card styleClass="service-card" [style.--accent]="service.color">
+      @for (service of services; track service.title; let i = $index) {
+        <p-card
+          styleClass="service-card"
+          [style.--accent]="service.color"
+          reveal
+          [revealDelay]="(i % 3) * 90"
+        >
           <ng-template #header>
             <div class="service-media">
               <img
@@ -80,7 +118,7 @@
 
 <!-- Promo -->
 <section class="section promo">
-  <div class="container promo-inner">
+  <div class="container promo-inner" reveal>
     <p-tag [value]="promo.badge" severity="success" />
     <h2>{{ promo.title }}</h2>
     <p class="section-subtitle">{{ promo.text }}</p>
@@ -96,11 +134,11 @@
 <!-- Reviews -->
 <section id="reviews" class="section">
   <div class="container">
-    <h2>{{ reviewsSection.title }}</h2>
-    <p class="section-subtitle">{{ reviewsSection.subtitle }}</p>
+    <h2 reveal>{{ reviewsSection.title }}</h2>
+    <p class="section-subtitle" reveal [revealDelay]="80">{{ reviewsSection.subtitle }}</p>
     <div class="reviews-grid">
-      @for (review of reviews(); track $index) {
-        <p-card styleClass="review-card">
+      @for (review of reviews(); track $index; let i = $index) {
+        <p-card styleClass="review-card" reveal [revealDelay]="(i % 3) * 80">
           <div class="review-top">
             <div>
               <strong>{{ review.author }}</strong>
@@ -112,7 +150,7 @@
         </p-card>
       }
     </div>
-    <div class="reviews-cta">
+    <div class="reviews-cta" reveal>
       <p class="reviews-hint">{{ reviewsSection.emptyHint }}</p>
       <p-button
         [label]="reviewsSection.cta"
@@ -127,9 +165,9 @@
 <!-- Contacts -->
 <section id="contacts" class="section contacts">
   <div class="container">
-    <h2>{{ contacts.title }}</h2>
-    <p class="section-subtitle">{{ contacts.subtitle }}</p>
-    <p-card styleClass="contact-card">
+    <h2 reveal>{{ contacts.title }}</h2>
+    <p class="section-subtitle" reveal [revealDelay]="80">{{ contacts.subtitle }}</p>
+    <p-card styleClass="contact-card" reveal [revealDelay]="140">
       <div class="contact-inner">
         <div class="contact-person">
           <i class="pi pi-phone contact-avatar" aria-hidden="true"></i>
@@ -145,7 +183,12 @@
           {{ contacts.hours }}
         </p>
         <a [href]="contacts.phoneHref" class="contact-call-link">
-          <p-button [label]="contacts.cta" icon="pi pi-phone" size="large" styleClass="w-full" />
+          <p-button
+            [label]="contacts.cta"
+            icon="pi pi-phone"
+            size="large"
+            styleClass="cta-accent w-full"
+          />
         </a>
         <p-button
           label="Або залишіть заявку — передзвонимо самі"
@@ -157,6 +200,16 @@
     </p-card>
   </div>
 </section>
+
+<!-- Sticky mobile CTA -->
+<div class="mobile-cta" role="region" aria-label="Швидкі дії">
+  <a [href]="contacts.phoneHref" class="mobile-cta-call">
+    <i class="pi pi-phone" aria-hidden="true"></i> Подзвонити
+  </a>
+  <button type="button" class="mobile-cta-lead" (click)="openLeadDialog()">
+    <i class="pi pi-envelope" aria-hidden="true"></i> Заявка
+  </button>
+</div>
 
 <app-lead-dialog [(visible)]="leadDialogVisible" />
 <app-review-dialog [(visible)]="reviewDialogVisible" />
