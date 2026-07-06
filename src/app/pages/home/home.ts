@@ -66,14 +66,6 @@ export class Home {
   protected readonly reviews = this.reviewsStore.reviews;
   protected readonly contacts = CONTACTS;
 
-  /** Кількість видимих карток послуг по брейкпойнтах (карусель-свайпер). */
-  protected readonly servicesResponsive = [
-    { breakpoint: '1200px', numVisible: 4, numScroll: 1 },
-    { breakpoint: '992px', numVisible: 3, numScroll: 1 },
-    { breakpoint: '768px', numVisible: 2, numScroll: 1 },
-    { breakpoint: '560px', numVisible: 1, numScroll: 1 },
-  ];
-
   /** Кількість видимих відгуків по брейкпойнтах (карусель-свайпер). */
   protected readonly reviewsResponsive = [
     { breakpoint: '1200px', numVisible: 3, numScroll: 1 },

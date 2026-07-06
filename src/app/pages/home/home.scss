@@ -245,29 +245,16 @@
   }
 }
 
-/* ===================== Services (карусель-свайпер) ===================== */
-.services-carousel {
-  /* Кожна картка займає рівну частку ширини (у %), кількість — через
-     numVisible по брейкпойнтах; відступ між картками — через item padding. */
-  :host ::ng-deep & {
-    .p-carousel-item {
-      padding: 0.6rem;
-      display: flex;
-    }
+/* ===================== Services (сітка, без слайдера) ===================== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
 
-    /* стрілки навігації */
-    .p-carousel-prev-button,
-    .p-carousel-next-button {
-      color: var(--brand-navy);
-    }
-
-    /* індикатори (крапки) */
-    .p-carousel-indicator-button {
-      background: var(--brand-border);
-    }
-    .p-carousel-indicator.p-carousel-indicator-active .p-carousel-indicator-button {
-      background: var(--brand-navy);
-    }
+@media (max-width: 520px) {
+  .services-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -295,7 +282,6 @@
 }
 
 .service-media {
-  position: relative;
   overflow: hidden;
 
   img {
@@ -306,29 +292,26 @@
     object-fit: cover;
     transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
-
-  .service-icon {
-    position: absolute;
-    left: 1rem;
-    bottom: -1.4rem;
-    width: 2.9rem;
-    height: 2.9rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    color: #fff;
-    background: var(--accent, var(--brand-navy));
-    box-shadow: 0 8px 18px -6px color-mix(in srgb, var(--accent, #000) 60%, transparent);
-    border: 3px solid #fff;
-  }
 }
 
 .service-body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 1.6rem 1.25rem 1.4rem;
+  padding: 1.25rem 1.25rem 1.4rem;
+}
+
+.service-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 0.75rem;
+  border-radius: 14px;
+  color: #fff;
+  background: var(--accent, var(--brand-navy));
+  box-shadow: 0 8px 18px -8px color-mix(in srgb, var(--accent, #000) 60%, transparent);
 }
 
 .service-title {
