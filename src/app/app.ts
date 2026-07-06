@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CONTACTS, FOOTER } from './data/site-content';
 import { TrafficSource } from './services/traffic-source';
+import { Logo } from './components/logo/logo';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, Logo],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

@@ -1,0 +1,91 @@
+<p-dialog
+  [visible]="visible()"
+  (visibleChange)="visible.set($event)"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [style]="{ width: '32rem', maxWidth: '94vw' }"
+  [header]="copy.title"
+>
+  <p class="dialog-subtitle">{{ copy.subtitle }}</p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="lead-form" novalidate>
+    <div class="field">
+      <label for="review-author">{{ copy.nameLabel }}</label>
+      <input
+        pInputText
+        id="review-author"
+        formControlName="author"
+        [placeholder]="copy.namePlaceholder"
+        [class.ng-dirty]="invalid('author')"
+        autocomplete="name"
+      />
+      @if (invalid('author')) {
+        <small class="field-error">{{ copy.nameError }}</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="review-district">{{ copy.districtLabel }}</label>
+      <input
+        pInputText
+        id="review-district"
+        formControlName="district"
+        [placeholder]="copy.districtPlaceholder"
+      />
+    </div>
+
+    <div class="field">
+      <label for="review-service">{{ copy.serviceLabel }}</label>
+      <p-select
+        inputId="review-service"
+        formControlName="service"
+        [options]="serviceOptions"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="copy.servicePlaceholder"
+        appendTo="body"
+        styleClass="w-full"
+      />
+      @if (invalid('service')) {
+        <small class="field-error">{{ copy.serviceError }}</small>
+      }
+    </div>
+
+    <div class="field">
+      <label>{{ copy.ratingLabel }}</label>
+      <p-rating formControlName="rating" />
+    </div>
+
+    <div class="field">
+      <label for="review-text">{{ copy.textLabel }}</label>
+      <textarea
+        pTextarea
+        id="review-text"
+        formControlName="text"
+        [placeholder]="copy.textPlaceholder"
+        rows="3"
+        [class.ng-dirty]="invalid('text')"
+      ></textarea>
+      @if (invalid('text')) {
+        <small class="field-error">{{ copy.textError }}</small>
+      }
+    </div>
+
+    <p class="review-storage-hint">
+      <i class="pi pi-info-circle" aria-hidden="true"></i>
+      {{ copy.savedHint }}
+    </p>
+
+    <div class="dialog-actions">
+      <p-button
+        type="button"
+        [label]="copy.cancel"
+        severity="secondary"
+        [text]="true"
+        (onClick)="close()"
+      />
+      <p-button type="submit" [label]="copy.submit" icon="pi pi-check" [loading]="submitting()" />
+    </div>
+  </form>
+</p-dialog>

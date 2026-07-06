@@ -1,23 +1,43 @@
 <!-- Hero -->
 <section class="hero">
-  <div class="container">
-    <p-tag [value]="hero.eyebrow" severity="warn" />
-    <h1>{{ hero.title }}</h1>
-    <p class="hero-subtitle">{{ hero.subtitle }}</p>
-    <div class="hero-actions">
-      <p-button
-        [label]="hero.ctaPrimary"
-        icon="pi pi-phone"
-        size="large"
-        (onClick)="openLeadDialog()"
-      />
-      <p-button
-        [label]="hero.ctaSecondary"
-        icon="pi pi-arrow-down"
-        size="large"
-        severity="secondary"
-        [outlined]="true"
-        (onClick)="scrollTo('services')"
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <p-tag [value]="hero.eyebrow" severity="warn" />
+      <h1>{{ hero.title }}</h1>
+      <p class="hero-subtitle">{{ hero.subtitle }}</p>
+      <div class="hero-actions">
+        <p-button
+          [label]="hero.ctaPrimary"
+          icon="pi pi-phone"
+          size="large"
+          (onClick)="openLeadDialog()"
+        />
+        <p-button
+          [label]="hero.ctaSecondary"
+          icon="pi pi-arrow-down"
+          size="large"
+          severity="secondary"
+          [outlined]="true"
+          (onClick)="scrollTo('services')"
+        />
+      </div>
+      <ul class="hero-stats">
+        @for (stat of heroStats; track stat.label) {
+          <li>
+            <span class="hero-stat-value">{{ stat.value }}</span>
+            <span class="hero-stat-unit">{{ stat.unit }}</span>
+            <span class="hero-stat-label">{{ stat.label }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+    <div class="hero-media">
+      <img
+        src="img/hero.webp"
+        alt="Майстер допоміжної служби у Львові"
+        width="1344"
+        height="768"
+        fetchpriority="high"
       />
     </div>
   </div>
@@ -30,13 +50,22 @@
     <p class="section-subtitle">{{ servicesSection.subtitle }}</p>
     <div class="services-grid">
       @for (service of services; track service.title) {
-        <p-card styleClass="service-card">
+        <p-card styleClass="service-card" [style.--accent]="service.color">
           <ng-template #header>
-            <div class="service-header">
-              <i [class]="service.icon" aria-hidden="true"></i>
-              <h3>{{ service.title }}</h3>
+            <div class="service-media">
+              <img
+                [src]="'img/services/' + service.image"
+                [alt]="service.title"
+                width="1184"
+                height="864"
+                loading="lazy"
+              />
+              <span class="service-icon">
+                <app-brand-icon [name]="service.iconKey" [size]="26" />
+              </span>
             </div>
           </ng-template>
+          <h3 class="service-title">{{ service.title }}</h3>
           <p class="service-description">{{ service.description }}</p>
           <ul class="service-examples">
             @for (example of service.examples; track example) {
@@ -70,7 +99,7 @@
     <h2>{{ reviewsSection.title }}</h2>
     <p class="section-subtitle">{{ reviewsSection.subtitle }}</p>
     <div class="reviews-grid">
-      @for (review of reviews; track review.author) {
+      @for (review of reviews(); track $index) {
         <p-card styleClass="review-card">
           <div class="review-top">
             <div>
@@ -85,7 +114,12 @@
     </div>
     <div class="reviews-cta">
       <p class="reviews-hint">{{ reviewsSection.emptyHint }}</p>
-      <p-button [label]="reviewsSection.cta" icon="pi pi-pencil" [outlined]="true" />
+      <p-button
+        [label]="reviewsSection.cta"
+        icon="pi pi-pencil"
+        [outlined]="true"
+        (onClick)="openReviewDialog()"
+      />
     </div>
   </div>
 </section>
@@ -98,7 +132,7 @@
     <p-card styleClass="contact-card">
       <div class="contact-inner">
         <div class="contact-person">
-          <i class="pi pi-user contact-avatar" aria-hidden="true"></i>
+          <i class="pi pi-phone contact-avatar" aria-hidden="true"></i>
           <div>
             <strong>{{ contacts.contactName }}</strong>
             <span class="review-meta">{{ contacts.contactRole }}</span>
@@ -125,3 +159,4 @@
 </section>
 
 <app-lead-dialog [(visible)]="leadDialogVisible" />
+<app-review-dialog [(visible)]="reviewDialogVisible" />

@@ -1,8 +1,7 @@
 <header class="site-header">
   <div class="container header-inner">
-    <a routerLink="/" class="brand">
-      <i class="pi pi-shield brand-icon" aria-hidden="true"></i>
-      <span class="brand-name">{{ footer.brand }}</span>
+    <a routerLink="/" class="brand" aria-label="Свої у Львові — на головну">
+      <app-logo [emblemSize]="38" />
     </a>
     <a class="header-phone" [href]="contacts.phoneHref">
       <i class="pi pi-phone" aria-hidden="true"></i>
