@@ -7,12 +7,29 @@
 
   .hero-bg {
     position: absolute;
-    inset: 0;
+    inset: -20%;
     background:
-      radial-gradient(60% 80% at 85% 0%, color-mix(in srgb, var(--brand-navy) 10%, transparent), transparent 70%),
-      radial-gradient(50% 60% at 5% 100%, color-mix(in srgb, var(--brand-accent) 8%, transparent), transparent 70%);
+      radial-gradient(38% 46% at 82% 8%, color-mix(in srgb, var(--brand-navy) 16%, transparent), transparent 70%),
+      radial-gradient(34% 42% at 10% 92%, color-mix(in srgb, var(--brand-accent) 12%, transparent), transparent 70%),
+      radial-gradient(30% 40% at 50% 50%, color-mix(in srgb, #17a2b8 10%, transparent), transparent 70%);
     pointer-events: none;
+    animation: aurora 18s ease-in-out infinite alternate;
   }
+}
+
+@keyframes aurora {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -1.5%, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(-2%, 1.5%, 0) scale(1.04);
+  }
+}
+
+.hero {
 
   .hero-inner {
     position: relative;
@@ -102,7 +119,8 @@
   .hero-media {
     position: relative;
 
-    img {
+    img,
+    .hero-video {
       display: block;
       width: 100%;
       height: auto;
@@ -110,12 +128,14 @@
       object-fit: cover;
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-lg);
+      background: var(--brand-muted);
     }
 
     .hero-proof {
       position: absolute;
       left: -0.5rem;
       bottom: -1.1rem;
+      animation: floaty 5.5s ease-in-out infinite;
       display: flex;
       flex-direction: column;
       gap: 0.15rem;
@@ -142,6 +162,16 @@
         color: var(--brand-muted);
       }
     }
+  }
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
   }
 }
 
@@ -218,19 +248,30 @@
 /* ===================== Services ===================== */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+@media (max-width: 560px) {
+  .services-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+  }
 }
 
 :host ::ng-deep .service-card {
   height: 100%;
   overflow: hidden;
   border-top: 4px solid var(--accent, var(--brand-navy));
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
     box-shadow: var(--shadow-lg);
+  }
+
+  &:hover .service-media img {
+    transform: scale(1.06);
   }
 
   .p-card-body {
@@ -240,12 +281,14 @@
 
 .service-media {
   position: relative;
+  overflow: hidden;
 
   img {
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 9 / 16;
     object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .service-icon {

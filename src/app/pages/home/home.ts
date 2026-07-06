@@ -1,4 +1,11 @@
-import { Component, inject, signal } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  afterNextRender,
+  inject,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
@@ -59,6 +66,19 @@ export class Home {
 
   protected readonly leadDialogVisible = signal(false);
   protected readonly reviewDialogVisible = signal(false);
+
+  private readonly heroVideo = viewChild<ElementRef<HTMLVideoElement>>('heroVideo');
+
+  constructor() {
+    // Повага до prefers-reduced-motion: зупиняємо фонове відео, лишається постер.
+    afterNextRender(() => {
+      const video = this.heroVideo()?.nativeElement;
+      if (video && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        video.removeAttribute('autoplay');
+        video.pause();
+      }
+    });
+  }
 
   protected openLeadDialog(): void {
     this.leadDialogVisible.set(true);

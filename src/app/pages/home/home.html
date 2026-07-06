@@ -39,13 +39,18 @@
       </ul>
     </div>
     <div class="hero-media" reveal [revealDelay]="160">
-      <img
-        src="img/hero.webp"
-        alt="Майстер допоміжної служби у Львові"
-        width="1344"
-        height="768"
-        fetchpriority="high"
-      />
+      <video
+        #heroVideo
+        class="hero-video"
+        src="img/hero.mp4"
+        poster="img/hero.webp"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-label="Майстер допоміжної служби у Львові"
+      ></video>
       <div class="hero-proof">
         <div class="hero-proof-rating">
           <p-rating [ngModel]="5" [readonly]="true" />
@@ -94,8 +99,8 @@
               <img
                 [src]="'img/services/' + service.image"
                 [alt]="service.title"
-                width="1184"
-                height="864"
+                width="768"
+                height="1344"
                 loading="lazy"
               />
               <span class="service-icon">

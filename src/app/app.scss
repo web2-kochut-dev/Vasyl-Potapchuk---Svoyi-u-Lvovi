@@ -33,14 +33,33 @@
     gap: 1.5rem;
 
     a {
+      position: relative;
       font-weight: 600;
       font-size: 0.95rem;
       color: var(--brand-fg);
       text-decoration: none;
       transition: color 0.15s ease;
 
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 100%;
+        height: 2px;
+        background: var(--brand-navy);
+        border-radius: 2px;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.22s ease;
+      }
+
       &:hover {
         color: var(--brand-navy);
+      }
+
+      &:hover::after {
+        transform: scaleX(1);
       }
     }
   }
