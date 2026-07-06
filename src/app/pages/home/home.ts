@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
 import { DividerModule } from 'primeng/divider';
@@ -36,6 +37,7 @@ import {
   imports: [
     ButtonModule,
     CardModule,
+    CarouselModule,
     TagModule,
     RatingModule,
     DividerModule,
@@ -63,6 +65,14 @@ export class Home {
   protected readonly reviewsSection = REVIEWS_SECTION;
   protected readonly reviews = this.reviewsStore.reviews;
   protected readonly contacts = CONTACTS;
+
+  /** Кількість видимих карток послуг по брейкпойнтах (карусель-свайпер). */
+  protected readonly servicesResponsive = [
+    { breakpoint: '1200px', numVisible: 4, numScroll: 1 },
+    { breakpoint: '992px', numVisible: 3, numScroll: 1 },
+    { breakpoint: '768px', numVisible: 2, numScroll: 1 },
+    { breakpoint: '560px', numVisible: 1, numScroll: 1 },
+  ];
 
   protected readonly leadDialogVisible = signal(false);
   protected readonly reviewDialogVisible = signal(false);

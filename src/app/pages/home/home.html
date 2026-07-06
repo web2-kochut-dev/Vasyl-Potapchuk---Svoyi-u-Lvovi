@@ -86,37 +86,42 @@
   <div class="container">
     <h2 reveal>{{ servicesSection.title }}</h2>
     <p class="section-subtitle" reveal [revealDelay]="80">{{ servicesSection.subtitle }}</p>
-    <div class="services-grid">
-      @for (service of services; track service.title; let i = $index) {
-        <p-card
-          styleClass="service-card"
-          [style.--accent]="service.color"
-          reveal
-          [revealDelay]="(i % 3) * 90"
-        >
-          <ng-template #header>
+    <div class="services-carousel" reveal [revealDelay]="140">
+      <p-carousel
+        [value]="services"
+        [numVisible]="4"
+        [numScroll]="1"
+        [responsiveOptions]="servicesResponsive"
+        [circular]="true"
+        [showIndicators]="true"
+        [showNavigators]="true"
+      >
+        <ng-template let-service pTemplate="item">
+          <article class="service-card" [style.--accent]="service.color">
             <div class="service-media">
               <img
                 [src]="'img/services/' + service.image"
                 [alt]="service.title"
                 width="768"
-                height="1344"
+                height="1024"
                 loading="lazy"
               />
               <span class="service-icon">
                 <app-brand-icon [name]="service.iconKey" [size]="26" />
               </span>
             </div>
-          </ng-template>
-          <h3 class="service-title">{{ service.title }}</h3>
-          <p class="service-description">{{ service.description }}</p>
-          <ul class="service-examples">
-            @for (example of service.examples; track example) {
-              <li>{{ example }}</li>
-            }
-          </ul>
-        </p-card>
-      }
+            <div class="service-body">
+              <h3 class="service-title">{{ service.title }}</h3>
+              <p class="service-description">{{ service.description }}</p>
+              <ul class="service-examples">
+                @for (example of service.examples; track example) {
+                  <li>{{ example }}</li>
+                }
+              </ul>
+            </div>
+          </article>
+        </ng-template>
+      </p-carousel>
     </div>
   </div>
 </section>
