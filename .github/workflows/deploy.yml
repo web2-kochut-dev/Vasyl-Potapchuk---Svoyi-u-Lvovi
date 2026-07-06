@@ -20,6 +20,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Примусово перемикає джерело Pages на «GitHub Actions», щоб
+      # автоматичний Jekyll-білд (pages-build-deployment) більше не
+      # конкурував за деплой і не перезаписував наш застосунок.
+      - name: Configure Pages (force GitHub Actions source)
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - uses: actions/setup-node@v4
         with:
           node-version: 24
