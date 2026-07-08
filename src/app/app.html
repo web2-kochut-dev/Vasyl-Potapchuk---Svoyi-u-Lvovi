@@ -1,7 +1,7 @@
 <header class="site-header">
   <div class="container header-inner">
     <a routerLink="/" class="brand" aria-label="Свій майстер — на головну" (click)="closeMenu()">
-      <app-logo [emblemSize]="38" />
+      <app-logo [emblemSize]="42" />
     </a>
     <nav class="header-nav" aria-label="Основна навігація">
       @for (item of navItems; track item.href) {
@@ -50,7 +50,7 @@
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <app-logo [emblemSize]="40" />
+      <app-logo [emblemSize]="48" />
       <p>{{ footer.tagline }}</p>
     </div>
     <nav class="footer-nav" aria-label="Навігація у футері">

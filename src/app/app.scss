@@ -241,6 +241,13 @@
 .site-footer ::ng-deep .logo__tag {
   color: color-mix(in srgb, #fff 65%, transparent);
 }
+/* Емблема на світлому «чипі», щоб читалась на темному фоні */
+.site-footer ::ng-deep .logo__emblem {
+  background: #fff;
+  border-radius: 10px;
+  padding: 5px;
+  box-sizing: content-box;
+}
 
 @media (max-width: 640px) {
   .site-footer {

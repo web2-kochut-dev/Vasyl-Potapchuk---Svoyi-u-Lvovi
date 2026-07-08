@@ -9,23 +9,15 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <span class="logo" [class.logo--stacked]="stacked()">
-      <svg class="logo__emblem" viewBox="0 0 100 78" [attr.height]="emblemSize()" aria-hidden="true">
-        <!-- дуга напрямків -->
-        <g fill="none" stroke-width="12" stroke-linecap="round">
-          <path d="M14.02 52.74 A36 36 0 0 1 20.15 33.87" stroke="#2D9CDB" />
-          <path d="M21.63 31.84 A36 36 0 0 1 37.69 20.17" stroke="#F2C94C" />
-          <path d="M40.08 19.39 A36 36 0 0 1 59.92 19.39" stroke="#F2994A" />
-          <path d="M62.31 20.17 A36 36 0 0 1 78.37 31.84" stroke="#27AE60" />
-          <path d="M79.85 33.87 A36 36 0 0 1 85.98 52.74" stroke="#6C5CE7" />
-        </g>
-        <!-- будинок -->
-        <path
-          d="M50 33 L66 46 L66 66 L34 66 L34 46 Z"
-          fill="#1B3A5B"
-        />
-        <rect x="45" y="52" width="10" height="14" rx="1" fill="#fff" />
-        <rect x="52.5" y="57" width="1.6" height="3" rx="0.8" fill="#1B3A5B" />
-      </svg>
+      <img
+        class="logo__emblem"
+        src="img/logo-emblem.webp"
+        [attr.height]="emblemSize()"
+        width="300"
+        height="260"
+        alt=""
+        aria-hidden="true"
+      />
       @if (showText()) {
         <span class="logo__text">
           <span class="logo__name">Свій майстер</span>
