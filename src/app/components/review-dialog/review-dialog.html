@@ -76,7 +76,9 @@
       <i class="pi pi-info-circle" aria-hidden="true"></i>
       {{ copy.savedHint }}
     </p>
+  </form>
 
+  <ng-template pTemplate="footer">
     <div class="dialog-actions">
       <p-button
         type="button"
@@ -85,7 +87,13 @@
         [text]="true"
         (onClick)="close()"
       />
-      <p-button type="submit" [label]="copy.submit" icon="pi pi-check" [loading]="submitting()" />
+      <p-button
+        type="button"
+        [label]="copy.submit"
+        icon="pi pi-check"
+        [loading]="submitting()"
+        (onClick)="submit()"
+      />
     </div>
-  </form>
+  </ng-template>
 </p-dialog>

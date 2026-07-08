@@ -54,11 +54,13 @@
         transition: transform 0.22s ease;
       }
 
-      &:hover {
+      &:hover,
+      &.active {
         color: var(--brand-navy);
       }
 
-      &:hover::after {
+      &:hover::after,
+      &.active::after {
         transform: scaleX(1);
       }
     }
@@ -129,11 +131,19 @@
   }
 
   a {
-    padding: 0.85rem 0.25rem;
+    padding: 0.85rem 0.6rem;
     font-weight: 600;
     color: var(--brand-fg);
     text-decoration: none;
     border-bottom: 1px solid var(--brand-border);
+    border-left: 3px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+
+  a.active {
+    color: var(--brand-navy);
+    border-left-color: var(--brand-navy);
+    background: color-mix(in srgb, var(--brand-navy) 6%, transparent);
   }
 
   a:last-child {

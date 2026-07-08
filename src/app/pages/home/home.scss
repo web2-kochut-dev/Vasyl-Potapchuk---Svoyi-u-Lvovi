@@ -38,7 +38,7 @@
 
 .hero-content {
   position: relative;
-  max-width: 640px;
+  max-width: 780px;
   padding-top: 5.5rem;
   padding-bottom: 4rem;
 
@@ -178,9 +178,113 @@
   gap: 1.5rem;
 }
 
+.service-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--brand-surface);
+  border: 1px solid var(--brand-border);
+  border-top: 4px solid var(--accent, var(--brand-navy));
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  &:hover .service-media img {
+    transform: scale(1.06);
+  }
+
+  &:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--accent, var(--brand-navy)) 55%, transparent);
+    outline-offset: 2px;
+  }
+}
+
+.service-media {
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+.service-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.25rem 1.25rem 1.4rem;
+}
+
+.service-icon {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 0.75rem;
+  border-radius: 14px;
+  color: #fff;
+  background: var(--accent, var(--brand-navy));
+  box-shadow: 0 8px 18px -8px color-mix(in srgb, var(--accent, #000) 60%, transparent);
+}
+
+/* Підказка «Детальніше» — лише на мобільному, де опис приховано */
+.service-more {
+  display: none;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.55rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent, var(--brand-navy));
+
+  i {
+    font-size: 0.75rem;
+  }
+}
+
+.service-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.12rem;
+  color: var(--brand-navy-900);
+}
+
+.service-description {
+  margin: 0 0 0.75rem;
+  color: var(--brand-muted);
+}
+
+.service-examples {
+  margin: 0;
+  padding-left: 1.1rem;
+  line-height: 1.8;
+  font-size: 0.95rem;
+
+  li::marker {
+    color: var(--accent, var(--brand-navy));
+  }
+}
+
 /* На мобільному — максимально лаконічні картки у 2 колонки:
    лише фото + іконка + назва (без опису та прикладів), щоб було
-   компактно й акуратно (за проханням клієнта). */
+   компактно й акуратно (за проханням клієнта).
+   Розміщено ПІСЛЯ базових правил, щоб мобільні перевизначення
+   мали пріоритет за однакової специфічності. */
 @media (max-width: 560px) {
   .services-grid {
     grid-template-columns: 1fr 1fr;
@@ -209,83 +313,57 @@
   .service-examples {
     display: none;
   }
-}
 
-.service-card {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  background: var(--brand-surface);
-  border: 1px solid var(--brand-border);
-  border-top: 4px solid var(--accent, var(--brand-navy));
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-
-  &:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-lg);
-  }
-
-  &:hover .service-media img {
-    transform: scale(1.06);
+  .service-more {
+    display: inline-flex;
   }
 }
 
-.service-media {
-  overflow: hidden;
+/* Попап деталей послуги */
+.service-dialog {
+  .service-dialog-media {
+    position: relative;
+    margin-bottom: 1.5rem;
 
-  img {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+    }
+
+    .service-dialog-icon {
+      position: absolute;
+      left: 0.9rem;
+      bottom: -1.1rem;
+      width: 2.6rem;
+      height: 2.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      color: #fff;
+      background: var(--accent, var(--brand-navy));
+      border: 3px solid #fff;
+      box-shadow: var(--shadow-md);
+    }
   }
-}
 
-.service-body {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding: 1.25rem 1.25rem 1.4rem;
-}
+  .service-dialog-desc {
+    margin: 0 0 0.85rem;
+    color: var(--brand-muted);
+    line-height: 1.55;
+  }
 
-.service-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  margin-bottom: 0.75rem;
-  border-radius: 14px;
-  color: #fff;
-  background: var(--accent, var(--brand-navy));
-  box-shadow: 0 8px 18px -8px color-mix(in srgb, var(--accent, #000) 60%, transparent);
-}
+  .service-dialog-list {
+    margin: 0;
+    padding-left: 1.1rem;
+    line-height: 1.9;
 
-.service-title {
-  margin: 0 0 0.5rem;
-  font-size: 1.12rem;
-  color: var(--brand-navy-900);
-}
-
-.service-description {
-  margin: 0 0 0.75rem;
-  color: var(--brand-muted);
-}
-
-.service-examples {
-  margin: 0;
-  padding-left: 1.1rem;
-  line-height: 1.8;
-  font-size: 0.95rem;
-
-  li::marker {
-    color: var(--accent, var(--brand-navy));
+    li::marker {
+      color: var(--accent, var(--brand-navy));
+    }
   }
 }
 

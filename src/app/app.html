@@ -4,8 +4,13 @@
       <app-logo [emblemSize]="42" />
     </a>
     <nav class="header-nav" aria-label="Основна навігація">
-      @for (item of navItems; track item.href) {
-        <a [href]="item.href">{{ item.label }}</a>
+      @for (item of navItems; track item.id) {
+        <a
+          [href]="'#' + item.id"
+          [class.active]="activeSection() === item.id"
+          (click)="goTo($event, item.id)"
+          >{{ item.label }}</a
+        >
       }
     </nav>
     <a class="header-phone" [href]="contacts.phoneHref">
@@ -33,8 +38,13 @@
     aria-label="Мобільна навігація"
   >
     <div class="container">
-      @for (item of navItems; track item.href) {
-        <a [href]="item.href" (click)="closeMenu()">{{ item.label }}</a>
+      @for (item of navItems; track item.id) {
+        <a
+          [href]="'#' + item.id"
+          [class.active]="activeSection() === item.id"
+          (click)="goTo($event, item.id)"
+          >{{ item.label }}</a
+        >
       }
       <a class="mobile-menu-phone" [href]="contacts.phoneHref" (click)="closeMenu()">
         <i class="pi pi-phone" aria-hidden="true"></i> {{ contacts.phone }}
@@ -51,18 +61,17 @@
   <div class="container footer-inner">
     <div class="footer-brand">
       <app-logo [emblemSize]="48" />
-      <p>{{ footer.tagline }}</p>
     </div>
     <nav class="footer-nav" aria-label="Навігація у футері">
-      <a href="#services">Послуги</a>
-      <a href="#why">Чому ми</a>
-      <a href="#reviews">Відгуки</a>
-      <a href="#contacts">Контакти</a>
+      <a href="#services" (click)="goTo($event, 'services')">Послуги</a>
+      <a href="#why" (click)="goTo($event, 'why')">Чому ми</a>
+      <a href="#reviews" (click)="goTo($event, 'reviews')">Відгуки</a>
+      <a href="#contacts" (click)="goTo($event, 'contacts')">Контакти</a>
     </nav>
     <div class="footer-contact">
       <a class="footer-phone" [href]="contacts.phoneHref">{{ contacts.phone }}</a>
       <span>{{ contacts.hours }}</span>
     </div>
   </div>
-  <div class="container footer-note">{{ footer.note }}</div>
+  <div class="container footer-note">© {{ year }} {{ footer.brand }}. {{ footer.note }}</div>
 </footer>

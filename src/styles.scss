@@ -81,6 +81,17 @@ section[id] {
   scroll-margin-top: 84px;
 }
 
+/* Діалоги: не вищі за екран, контент скролиться, кнопки у футері — завжди видимі */
+.p-dialog {
+  max-height: 92vh;
+}
+.p-dialog .p-dialog-content {
+  overflow-y: auto;
+}
+.p-dialog .p-dialog-footer {
+  flex-shrink: 0;
+}
+
 /* Акцентний CTA (trust gold) — застосовується до головних кнопок дії */
 :root {
   --p-button-primary-background: var(--brand-navy);

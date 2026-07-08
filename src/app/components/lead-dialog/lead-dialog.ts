@@ -6,6 +6,9 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { TextareaModule } from 'primeng/textarea';
 import { SelectModule } from 'primeng/select';
+import { InputMaskModule } from 'primeng/inputmask';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { CALL_TIMES, LEAD_FORM, SERVICES } from '../../data/site-content';
 import { LeadService } from '../../services/lead';
 
@@ -18,6 +21,9 @@ import { LeadService } from '../../services/lead';
     InputTextModule,
     TextareaModule,
     SelectModule,
+    InputMaskModule,
+    InputGroupModule,
+    InputGroupAddonModule,
   ],
   templateUrl: './lead-dialog.html',
   styleUrl: './lead-dialog.scss',
@@ -41,7 +47,7 @@ export class LeadDialog {
 
   protected readonly form = this.fb.nonNullable.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
-    phone: ['', [Validators.required, Validators.pattern(/^\+?[\d\s()-]{9,17}$/)]],
+    phone: ['', [Validators.required, Validators.pattern(/^\d{2} \d{3} \d{2} \d{2}$/)]],
     service: ['', Validators.required],
     details: [''],
     callTime: [''],
@@ -67,7 +73,7 @@ export class LeadDialog {
       const value = this.form.getRawValue();
       await this.leadService.submit({
         name: value.name.trim(),
-        phone: value.phone.trim(),
+        phone: '+380 ' + value.phone.trim(),
         service: value.service,
         details: value.details.trim() || undefined,
         callTime: value.callTime || undefined,

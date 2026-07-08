@@ -9,6 +9,7 @@ import {
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CarouselModule } from 'primeng/carousel';
+import { DialogModule } from 'primeng/dialog';
 import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
 import { DividerModule } from 'primeng/divider';
@@ -22,6 +23,7 @@ import {
   CONTACTS,
   HERO,
   HERO_BADGES,
+  ServiceCategory,
   HERO_PROOF,
   HERO_STATS,
   PRICING,
@@ -43,6 +45,7 @@ import {
     ButtonModule,
     CardModule,
     CarouselModule,
+    DialogModule,
     TagModule,
     RatingModule,
     DividerModule,
@@ -85,6 +88,8 @@ export class Home {
 
   protected readonly leadDialogVisible = signal(false);
   protected readonly reviewDialogVisible = signal(false);
+  /** Обрана послуга для попапа з деталями (клік по картці). */
+  protected readonly selectedService = signal<ServiceCategory | null>(null);
 
   private readonly heroVideo = viewChild<ElementRef<HTMLVideoElement>>('heroVideo');
 
@@ -105,6 +110,19 @@ export class Home {
 
   protected openReviewDialog(): void {
     this.reviewDialogVisible.set(true);
+  }
+
+  protected openService(service: ServiceCategory): void {
+    this.selectedService.set(service);
+  }
+
+  protected closeService(): void {
+    this.selectedService.set(null);
+  }
+
+  protected requestFromService(): void {
+    this.selectedService.set(null);
+    this.leadDialogVisible.set(true);
   }
 
   protected scrollTo(id: string): void {

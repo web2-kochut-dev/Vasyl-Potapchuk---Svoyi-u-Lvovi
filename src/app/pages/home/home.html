@@ -72,6 +72,12 @@
         <article
           class="service-card"
           [style.--accent]="service.color"
+          role="button"
+          tabindex="0"
+          [attr.aria-label]="'Детальніше про послугу: ' + service.title"
+          (click)="openService(service)"
+          (keydown.enter)="openService(service)"
+          (keydown.space)="$event.preventDefault(); openService(service)"
           reveal
           [revealDelay]="(i % 3) * 90"
         >
@@ -95,6 +101,7 @@
                 <li>{{ example }}</li>
               }
             </ul>
+            <span class="service-more">Детальніше <i class="pi pi-arrow-right" aria-hidden="true"></i></span>
           </div>
         </article>
       }
@@ -251,6 +258,42 @@
     <i class="pi pi-envelope" aria-hidden="true"></i> Заявка
   </button>
 </div>
+
+<!-- Деталі послуги (попап при кліку на картку) -->
+<p-dialog
+  [visible]="selectedService() !== null"
+  (visibleChange)="$event || closeService()"
+  [modal]="true"
+  [draggable]="false"
+  [dismissableMask]="true"
+  [style]="{ width: '30rem', maxWidth: '94vw' }"
+  [header]="selectedService()?.title ?? ''"
+>
+  @if (selectedService(); as s) {
+    <div class="service-dialog" [style.--accent]="s.color">
+      <div class="service-dialog-media">
+        <img [src]="'img/services/' + s.image" [alt]="s.title" />
+        <span class="service-dialog-icon">
+          <app-brand-icon [name]="s.iconKey" [size]="24" />
+        </span>
+      </div>
+      <p class="service-dialog-desc">{{ s.description }}</p>
+      <ul class="service-dialog-list">
+        @for (ex of s.examples; track ex) {
+          <li>{{ ex }}</li>
+        }
+      </ul>
+    </div>
+  }
+  <ng-template pTemplate="footer">
+    <p-button
+      label="Викликати майстра"
+      icon="pi pi-phone"
+      styleClass="cta-accent w-full"
+      (onClick)="requestFromService()"
+    />
+  </ng-template>
+</p-dialog>
 
 <app-lead-dialog [(visible)]="leadDialogVisible" />
 <app-review-dialog [(visible)]="reviewDialogVisible" />

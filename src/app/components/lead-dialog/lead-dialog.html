@@ -27,15 +27,19 @@
 
     <div class="field">
       <label for="lead-phone">{{ copy.phoneLabel }}</label>
-      <input
-        pInputText
-        id="lead-phone"
-        type="tel"
-        formControlName="phone"
-        [placeholder]="copy.phonePlaceholder"
-        [class.ng-dirty]="invalid('phone')"
-        autocomplete="tel"
-      />
+      <p-inputgroup>
+        <p-inputgroup-addon>
+          <span class="phone-flag">🇺🇦&nbsp;+380</span>
+        </p-inputgroup-addon>
+        <p-inputmask
+          inputId="lead-phone"
+          formControlName="phone"
+          mask="99 999 99 99"
+          placeholder="__ ___ __ __"
+          [class.ng-dirty]="invalid('phone')"
+          autocomplete="tel-national"
+        />
+      </p-inputgroup>
       @if (invalid('phone')) {
         <small class="field-error">{{ copy.phoneError }}</small>
       }
@@ -83,7 +87,9 @@
         [showClear]="true"
       />
     </div>
+  </form>
 
+  <ng-template pTemplate="footer">
     <div class="dialog-actions">
       <p-button
         type="button"
@@ -93,11 +99,12 @@
         (onClick)="close()"
       />
       <p-button
-        type="submit"
+        type="button"
         [label]="submitting() ? copy.submitting : copy.submit"
         icon="pi pi-send"
         [loading]="submitting()"
+        (onClick)="submit()"
       />
     </div>
-  </form>
+  </ng-template>
 </p-dialog>
