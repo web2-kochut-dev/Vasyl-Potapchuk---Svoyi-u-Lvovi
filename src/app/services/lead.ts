@@ -35,7 +35,7 @@ export class LeadService {
     const callTime = CALL_TIMES.find((t) => t.value === lead.callTime)?.label;
 
     const lines = [
-      '🛠 Нова заявка із сайту «Свої у Львові»',
+      '🛠 Нова заявка із сайту «Свій майстер»',
       `Імʼя: ${lead.name}`,
       `Телефон: ${lead.phone}`,
       `Послуга: ${lead.service}`,

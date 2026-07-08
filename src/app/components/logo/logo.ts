@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 /**
- * Логотип «Свої у Львові» — емблема (кольорова дуга напрямків + будинок)
+ * Логотип «Свій майстер» — емблема (кольорова дуга напрямків + будинок)
  * з підписом. Кольори сегментів дуги повторюють палітру категорій послуг.
  */
 @Component({
@@ -28,8 +28,8 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
       </svg>
       @if (showText()) {
         <span class="logo__text">
-          <span class="logo__name">Свої у Львові</span>
-          <span class="logo__tag">Допоміжна служба · Львів</span>
+          <span class="logo__name">Свій майстер</span>
+          <span class="logo__tag">Сервіс допомоги по дому · Львів</span>
         </span>
       }
     </span>
@@ -62,11 +62,24 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
         color: #1b3a5b;
       }
       .logo__tag {
-        font-size: 0.72rem;
+        font-size: 0.68rem;
         font-weight: 600;
-        letter-spacing: 0.3px;
+        letter-spacing: 0.2px;
         text-transform: uppercase;
+        white-space: nowrap;
         color: var(--p-text-muted-color, #64748b);
+      }
+      .logo--stacked .logo__tag {
+        white-space: normal;
+      }
+      @media (max-width: 480px) {
+        .logo__name {
+          font-size: 1.05rem;
+        }
+        .logo__tag {
+          font-size: 0.58rem;
+          letter-spacing: 0.15px;
+        }
       }
     `,
   ],
