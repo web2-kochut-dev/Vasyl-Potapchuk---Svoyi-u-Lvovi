@@ -1,18 +1,46 @@
 <header class="site-header">
   <div class="container header-inner">
-    <a routerLink="/" class="brand" aria-label="Свої у Львові — на головну">
+    <a routerLink="/" class="brand" aria-label="Свої у Львові — на головну" (click)="closeMenu()">
       <app-logo [emblemSize]="38" />
     </a>
     <nav class="header-nav" aria-label="Основна навігація">
-      <a href="#services">Послуги</a>
-      <a href="#why">Чому ми</a>
-      <a href="#reviews">Відгуки</a>
+      @for (item of navItems; track item.href) {
+        <a [href]="item.href">{{ item.label }}</a>
+      }
     </nav>
     <a class="header-phone" [href]="contacts.phoneHref">
       <i class="pi pi-phone" aria-hidden="true"></i>
       <span>{{ contacts.phone }}</span>
     </a>
+    <button
+      type="button"
+      class="header-burger"
+      [class.is-open]="menuOpen()"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="mobile-menu"
+      aria-label="Меню"
+    >
+      <span></span><span></span><span></span>
+    </button>
   </div>
+
+  <!-- Мобільне меню -->
+  <nav
+    id="mobile-menu"
+    class="mobile-menu"
+    [class.is-open]="menuOpen()"
+    aria-label="Мобільна навігація"
+  >
+    <div class="container">
+      @for (item of navItems; track item.href) {
+        <a [href]="item.href" (click)="closeMenu()">{{ item.label }}</a>
+      }
+      <a class="mobile-menu-phone" [href]="contacts.phoneHref" (click)="closeMenu()">
+        <i class="pi pi-phone" aria-hidden="true"></i> {{ contacts.phone }}
+      </a>
+    </div>
+  </nav>
 </header>
 
 <main>

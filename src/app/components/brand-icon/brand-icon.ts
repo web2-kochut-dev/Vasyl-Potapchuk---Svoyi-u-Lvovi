@@ -98,6 +98,13 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
           <path d="M12 3.5 14 6l3-.4-.4 3L19 11l-2.4 2.4.4 3-3-.4L12 18.5 10 16l-3 .4.4-3L5 11l2.4-2.6L7 5.6l3 .4z" />
           <path d="m9.5 11 1.8 1.8L15 9" />
         }
+        @case ('broom') {
+          <path d="M19.5 4.5 13 11" />
+          <path d="M8.5 12.5 6 21h9l-1.6-6.4a3 3 0 0 0-2-2.2z" />
+          <path d="M8.5 12.5 12 16" />
+          <path d="M11 15.5 9 21" />
+          <path d="M14 14 12 19.5" />
+        }
       }
     </svg>
   `,

@@ -24,7 +24,12 @@ import {
   HERO_BADGES,
   HERO_PROOF,
   HERO_STATS,
-  PROMO,
+  PRICING,
+  PRICING_SECTION,
+  PROCESS_SECTION,
+  PROCESS_STEPS,
+  PROMOS,
+  PROMO_CTA,
   REVIEWS_SECTION,
   SERVICES,
   SERVICES_SECTION,
@@ -61,7 +66,12 @@ export class Home {
   protected readonly services = SERVICES;
   protected readonly whySection = WHY_SECTION;
   protected readonly whyItems = WHY_ITEMS;
-  protected readonly promo = PROMO;
+  protected readonly pricingSection = PRICING_SECTION;
+  protected readonly pricing = PRICING;
+  protected readonly processSection = PROCESS_SECTION;
+  protected readonly processSteps = PROCESS_STEPS;
+  protected readonly promos = PROMOS;
+  protected readonly promoCta = PROMO_CTA;
   protected readonly reviewsSection = REVIEWS_SECTION;
   protected readonly reviews = this.reviewsStore.reviews;
   protected readonly contacts = CONTACTS;

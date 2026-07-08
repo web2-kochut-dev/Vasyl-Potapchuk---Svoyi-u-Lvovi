@@ -121,18 +121,63 @@
   </div>
 </section>
 
+<!-- How we work -->
+<section id="process" class="section process">
+  <div class="container">
+    <h2 reveal>{{ processSection.title }}</h2>
+    <p class="section-subtitle" reveal [revealDelay]="80">{{ processSection.subtitle }}</p>
+    <ol class="process-grid">
+      @for (step of processSteps; track step.title; let i = $index) {
+        <li class="process-step" reveal [revealDelay]="i * 90">
+          <span class="process-num">{{ i + 1 }}</span>
+          <i class="process-icon" [class]="step.icon" aria-hidden="true"></i>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.text }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" class="section pricing">
+  <div class="container">
+    <h2 reveal>{{ pricingSection.title }}</h2>
+    <p class="section-subtitle" reveal [revealDelay]="80">{{ pricingSection.subtitle }}</p>
+    <div class="pricing-grid">
+      @for (price of pricing; track price.label; let i = $index) {
+        <div class="pricing-card" reveal [revealDelay]="i * 90">
+          <span class="pricing-value">{{ price.value }}</span>
+          <strong class="pricing-label">{{ price.label }}</strong>
+          <span class="pricing-note">{{ price.note }}</span>
+        </div>
+      }
+    </div>
+    <p class="pricing-footnote" reveal>
+      <i class="pi pi-info-circle" aria-hidden="true"></i> {{ pricingSection.note }}
+    </p>
+  </div>
+</section>
+
 <!-- Promo -->
 <section class="section promo">
-  <div class="container promo-inner" reveal>
-    <p-tag [value]="promo.badge" severity="success" />
-    <h2>{{ promo.title }}</h2>
-    <p class="section-subtitle">{{ promo.text }}</p>
-    <p-button
-      [label]="promo.cta"
-      icon="pi pi-percentage"
-      severity="success"
-      (onClick)="openLeadDialog()"
-    />
+  <div class="container">
+    <div class="promo-grid">
+      @for (promo of promos; track promo.title; let i = $index) {
+        <div class="promo-card" reveal [revealDelay]="i * 100">
+          <p-tag [value]="promo.badge" severity="success" />
+          <h3>{{ promo.title }}</h3>
+          <p>{{ promo.text }}</p>
+          <p-button
+            [label]="promoCta"
+            [icon]="promo.icon"
+            severity="success"
+            [outlined]="i > 0"
+            (onClick)="openLeadDialog()"
+          />
+        </div>
+      }
+    </div>
   </div>
 </section>
 

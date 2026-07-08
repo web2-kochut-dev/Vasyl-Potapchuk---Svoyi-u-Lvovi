@@ -252,9 +252,35 @@
   gap: 1.5rem;
 }
 
-@media (max-width: 520px) {
+/* На мобільному — компактні картки у 2 колонки, без списку прикладів,
+   щоб не доводилось довго скролити (за проханням клієнта). */
+@media (max-width: 560px) {
   .services-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+  }
+
+  .service-body {
+    padding: 0.9rem 0.9rem 1.1rem;
+  }
+
+  .service-icon {
+    width: 2.35rem;
+    height: 2.35rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-title {
+    font-size: 1rem;
+  }
+
+  .service-description {
+    font-size: 0.85rem;
+    margin-bottom: 0;
+  }
+
+  .service-examples {
+    display: none;
   }
 }
 
@@ -336,16 +362,147 @@
   }
 }
 
-/* ===================== Promo ===================== */
-.promo {
+/* ===================== How we work ===================== */
+.process-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  counter-reset: step;
+}
+
+.process-step {
+  position: relative;
+  background: var(--brand-surface);
+  border: 1px solid var(--brand-border);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 1.4rem 1.4rem;
+  box-shadow: var(--shadow-sm);
+
+  .process-num {
+    position: absolute;
+    top: -0.9rem;
+    left: 1.4rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--brand-navy);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .process-icon {
+    font-size: 1.6rem;
+    color: var(--brand-navy);
+    margin: 0.5rem 0 0.6rem;
+    display: block;
+  }
+
+  h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1.05rem;
+    color: var(--brand-navy-900);
+  }
+
+  p {
+    margin: 0;
+    color: var(--brand-muted);
+    line-height: 1.55;
+    font-size: 0.95rem;
+  }
+}
+
+/* ===================== Pricing ===================== */
+.pricing {
   background: var(--brand-bg);
+}
 
-  .promo-inner {
-    text-align: center;
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
 
-    h2 {
-      margin-top: 1rem;
-    }
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.3rem;
+  padding: 1.75rem 1.25rem;
+  background: var(--brand-surface);
+  border: 1px solid var(--brand-border);
+  border-top: 4px solid var(--brand-accent);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+
+  .pricing-value {
+    font-family: var(--font-heading);
+    font-size: 1.9rem;
+    color: var(--brand-navy);
+  }
+
+  .pricing-label {
+    font-size: 1rem;
+    color: var(--brand-navy-900);
+  }
+
+  .pricing-note {
+    font-size: 0.88rem;
+    color: var(--brand-muted);
+  }
+}
+
+.pricing-footnote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.75rem 0 0;
+  color: var(--brand-muted);
+  font-size: 0.95rem;
+  text-align: center;
+
+  i {
+    color: var(--brand-accent);
+  }
+}
+
+/* ===================== Promo ===================== */
+.promo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.promo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 2rem;
+  background: linear-gradient(160deg, color-mix(in srgb, #16a34a 8%, var(--brand-surface)), var(--brand-surface));
+  border: 1px solid color-mix(in srgb, #16a34a 25%, var(--brand-border));
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+
+  h3 {
+    margin: 0.25rem 0 0;
+    font-size: 1.4rem;
+    color: var(--brand-navy-900);
+  }
+
+  p {
+    margin: 0 0 0.5rem;
+    color: var(--brand-muted);
+    line-height: 1.55;
   }
 }
 
