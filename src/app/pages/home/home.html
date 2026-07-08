@@ -1,64 +1,45 @@
 <!-- Hero -->
 <section class="hero">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="container hero-inner">
-    <div class="hero-copy">
-      <p-tag [value]="hero.eyebrow" severity="warn" reveal />
-      <h1 reveal [revealDelay]="60">{{ hero.title }}</h1>
-      <p class="hero-subtitle" reveal [revealDelay]="120">{{ hero.subtitle }}</p>
-      <div class="hero-actions" reveal [revealDelay]="180">
-        <p-button
-          [label]="hero.ctaPrimary"
-          icon="pi pi-phone"
-          size="large"
-          styleClass="cta-accent"
-          (onClick)="openLeadDialog()"
-        />
-        <p-button
-          [label]="hero.ctaSecondary"
-          icon="pi pi-arrow-down"
-          size="large"
-          severity="secondary"
-          [outlined]="true"
-          (onClick)="scrollTo('services')"
-        />
-      </div>
-      <ul class="hero-badges" reveal [revealDelay]="240">
-        @for (badge of heroBadges; track badge) {
-          <li><i class="pi pi-check-circle" aria-hidden="true"></i> {{ badge }}</li>
-        }
-      </ul>
-      <ul class="hero-stats" reveal [revealDelay]="300">
-        @for (stat of heroStats; track stat.label) {
-          <li>
-            <span class="hero-stat-value">{{ stat.value }}</span>
-            <span class="hero-stat-unit">{{ stat.unit }}</span>
-            <span class="hero-stat-label">{{ stat.label }}</span>
-          </li>
-        }
-      </ul>
+  <div class="hero-media-bg" aria-hidden="true">
+    <video
+      #heroVideo
+      class="hero-video"
+      src="img/hero.mp4"
+      poster="img/hero-poster.webp"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    ></video>
+    <div class="hero-scrim"></div>
+  </div>
+  <div class="container hero-content">
+    <p-tag [value]="hero.eyebrow" severity="warn" reveal />
+    <h1 reveal [revealDelay]="60">{{ hero.title }}</h1>
+    <p class="hero-subtitle" reveal [revealDelay]="120">{{ hero.subtitle }}</p>
+    <div class="hero-actions" reveal [revealDelay]="180">
+      <p-button
+        [label]="hero.ctaPrimary"
+        icon="pi pi-phone"
+        size="large"
+        styleClass="cta-accent"
+        (onClick)="openLeadDialog()"
+      />
+      <p-button
+        [label]="hero.ctaSecondary"
+        icon="pi pi-arrow-down"
+        size="large"
+        [outlined]="true"
+        styleClass="cta-ghost"
+        (onClick)="scrollTo('services')"
+      />
     </div>
-    <div class="hero-media" reveal [revealDelay]="160">
-      <video
-        #heroVideo
-        class="hero-video"
-        src="img/hero.mp4"
-        poster="img/hero.webp"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
-        aria-label="Майстер допоміжної служби у Львові"
-      ></video>
-      <div class="hero-proof">
-        <div class="hero-proof-rating">
-          <p-rating [ngModel]="5" [readonly]="true" />
-          <strong>{{ heroProof.rating }}</strong>
-        </div>
-        <span>{{ heroProof.text }}</span>
-      </div>
-    </div>
+    <ul class="hero-badges" reveal [revealDelay]="240">
+      @for (badge of heroBadges; track badge) {
+        <li><i class="pi pi-check-circle" aria-hidden="true"></i> {{ badge }}</li>
+      }
+    </ul>
   </div>
 </section>
 
