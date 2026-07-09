@@ -241,6 +241,19 @@
     font-size: 0.85rem;
     color: color-mix(in srgb, #fff 60%, transparent);
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem 1rem;
+
+    a {
+      color: color-mix(in srgb, #fff 80%, transparent);
+      text-decoration: none;
+    }
+    a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
   }
 }
 

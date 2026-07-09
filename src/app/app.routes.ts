@@ -11,5 +11,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/thanks/thanks').then((m) => m.Thanks),
     title: 'Дякуємо за заявку — Свій майстер',
   },
+  {
+    path: 'polityka-konfidentsiynosti',
+    loadComponent: () => import('./pages/privacy/privacy').then((m) => m.Privacy),
+    title: 'Політика конфіденційності — Свій майстер',
+  },
   { path: '**', redirectTo: '' },
 ];

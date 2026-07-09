@@ -73,5 +73,10 @@
       <span>{{ contacts.hours }}</span>
     </div>
   </div>
-  <div class="container footer-note">© {{ year }} {{ footer.brand }}. {{ footer.note }}</div>
+  <div class="container footer-note">
+    <span>© {{ year }} {{ footer.brand }}. {{ footer.note }}</span>
+    <a routerLink="/polityka-konfidentsiynosti">{{ footer.privacyLink }}</a>
+  </div>
 </footer>
+
+<app-cookie-notice />

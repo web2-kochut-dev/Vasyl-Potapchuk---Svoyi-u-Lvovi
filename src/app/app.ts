@@ -7,10 +7,13 @@ import {
   signal,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { CONTACTS, FOOTER } from './data/site-content';
 import { TrafficSource } from './services/traffic-source';
+import { Analytics } from './services/analytics';
 import { Logo } from './components/logo/logo';
+import { CookieNotice } from './components/cookie-notice/cookie-notice';
 
 interface NavItem {
   id: string;
@@ -19,13 +22,15 @@ interface NavItem {
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, Logo],
+  imports: [RouterOutlet, RouterLink, Logo, CookieNotice],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
   // Ініціалізуємо одразу, щоб ?source=... зчитався при першому завантаженні
   private readonly trafficSource = inject(TrafficSource);
+  private readonly analytics = inject(Analytics);
+  private readonly router = inject(Router);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly document = inject(DOCUMENT);
 
@@ -49,7 +54,14 @@ export class App {
   protected readonly activeSection = signal('');
 
   constructor() {
-    afterNextRender(() => this.setupScrollSpy());
+    afterNextRender(() => {
+      this.analytics.init();
+      // Віртуальні перегляди сторінок SPA (напр. сторінка подяки) для аналітики.
+      this.router.events
+        .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+        .subscribe((e) => this.analytics.trackPageView(e.urlAfterRedirects));
+      this.setupScrollSpy();
+    });
   }
 
   protected toggleMenu(): void {
