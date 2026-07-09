@@ -13,8 +13,8 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
         class="logo__emblem"
         src="img/logo-emblem.webp"
         [attr.height]="emblemSize()"
-        width="300"
-        height="260"
+        width="412"
+        height="331"
         alt=""
         aria-hidden="true"
       />
